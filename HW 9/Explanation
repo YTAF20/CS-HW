@@ -1,0 +1,5 @@
+Basically what I decided to do to find out what the lowest common ancestor is 
+first find out which subtree the LCA is in or if it's the root. To do this we
+checked whether both values were lesser or both values were greater, if one was lesser
+but one was greater than the root then we return that root. We simply traverse through the 
+BST until we were able to find that node.
