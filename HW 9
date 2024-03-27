@@ -1,0 +1,19 @@
+public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+    while (root != null) {
+        // If both p and q are greater than root, then LCA lies in the right subtree
+        if (root.val < p.val && root.val < q.val) {
+            root = root.right;
+        }
+        // If both p and q are lesser than root, then LCA lies in the left subtree
+        else if (root.val > p.val && root.val > q.val) {
+            root = root.left;
+        }
+        // If one of p or q is equal to the root, or one is on the left and the other is on the right,
+        // then the root is the LCA
+        else {
+            return root;
+        }
+    }
+    return null; // This line will never be reached if p and q are guaranteed to be in the tree
+
+ }
