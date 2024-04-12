@@ -1,0 +1,19 @@
+def floodFill(self, image, sr, sc, color):
+    og = color
+    if image[sr][sc] == color:
+        return image  # Return the image as is if the color is the same
+    
+    fill(self, image, sr, sc, color, og)
+
+    return image
+
+def fill(self, image, sr, sc, color, og):
+    if sr < 0 or sr > len(image) - 1 or sc > len(image[0]) - 1 or image[sr][sc] == color or image[sr][sc] != og:
+        return 
+
+
+    image[sr][sc] = color
+    fill(image ,sr + 1, sc, color, og)  # Down
+    fill(image ,sr - 1, sc, color, og)  # Up
+    fill(image ,sr, sc + 1, color, og)  # Right
+    fill(image ,sr, sc - 1, color, og)  # Left

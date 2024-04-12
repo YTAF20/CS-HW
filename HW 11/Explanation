@@ -1,0 +1,4 @@
+For this assignment how I planned on approaching it was first storing
+the value of the starting element in the graph before changing it to 
+whatever the sc was then traversing through the entire 2D array and changing all the values that are equal to the starting element to the color, but then realizing it had to be connected to the starting element
+decided to store the starting variable in a temp variable then recursively check in all 4 directions whether or not the pixels connected to the starting element, then check the elements surrounding those elements over and over until the whole graph is checked before returning the array
