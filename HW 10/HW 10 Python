@@ -20,6 +20,7 @@ def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
               for i in range(S):
                 node = L.popleft()
                 row.append(node.val)
+                i = i+1
                 if node.left: 
                      L.append(node.left)
                 if node.right:
