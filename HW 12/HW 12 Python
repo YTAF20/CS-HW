@@ -1,0 +1,26 @@
+from heapq import heappush, heappop
+from typing import List
+
+def minCostToSupplyWater(self, n: int, wells: List[int], pipes: List[List[int]]) -> int:
+        graph = {i: [] for i in range(n + 1)}
+        for j, cost in enumerate(wells):
+            graph[0].append((cost, j + 1))  
+        
+        for pipe in pipes:
+            graph[pipe[0]].append((pipe[2], pipe[1]))
+            graph[pipe[1]].append((pipe[2], pipe[0]))
+        
+        vil = [(0, 0)]  
+        minCost = 0
+        mst = set()
+        
+        while vil and len(mst) < n + 1:
+            cost, node = heappop(vil)
+            if node not in mst:
+                mst.add(node)
+                minCost += cost
+                for edge, next in graph[node]:
+                    if next not in mst:
+                        heappush(vil, (edge, next))
+        
+        return minCost

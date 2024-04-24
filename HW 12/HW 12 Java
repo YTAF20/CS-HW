@@ -1,0 +1,42 @@
+public int minCostToSupplyWater(int n, int[] wells, int[][] pipes) {
+    Map<Integer, List<int[]>> graph = new HashMap<>(); // makes virtual node
+    for (int i = 0; i <= n; i++) {
+        graph.put(i, new ArrayList<>());
+    }
+    for (int i = 0; i < wells.length; i++) {
+        graph.get(0).add(new int[]{i + 1, wells[i]});
+    }
+    for (int[] pipe : pipes) {
+        graph.get(pipe[0]).add(new int[]{pipe[1], pipe[2]});
+        graph.get(pipe[1]).add(new int[]{pipe[0], pipe[2]});
+    }
+
+
+    // selects edges w lowest cost then adds em
+    PriorityQueue<int[]> pq = new PriorityQueue<>(Comparator.comparingInt(a -> a[1]));
+    pq.addAll(graph.get(0));
+
+
+    boolean[] inMST = new boolean[n + 1];
+    inMST[0] = true;
+
+    int minCost = 0;
+    while (!pq.isEmpty()) {
+        int[] edge = pq.poll();
+        int nextNode = edge[0];
+        int cost = edge[1];
+
+        if (inMST[nextNode] == true) continue;
+
+        inMST[nextNode] = true;
+        minCost += cost;
+
+        for (int[] nextEdge : graph.get(nextNode)) {
+            if (inMST[nextEdge[0]] == false) {
+                pq.offer(nextEdge);
+            }
+        }
+    }
+
+    return minCost;
+}

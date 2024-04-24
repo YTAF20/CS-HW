@@ -1,0 +1,3 @@
+For this problem we have to create a MST or a minimum spanning
+tree to connect all the houses to the water and this can be done
+using either kruskals or prims algorithm. Since we haven't really learned sets I decided to use prims algorithm for this problem
